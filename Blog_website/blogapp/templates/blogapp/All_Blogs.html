@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>All Blogs</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #f3e7fe, #d9ecff); /* Gradient background */
+            font-family: 'Poppins', sans-serif;
+        }
+        header {
+            background: linear-gradient(to right, #6a11cb, #2575fc); /* Vibrant gradient for header */
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 3px solid #ffd200; /* Highlight border */
+        }
+        .jersey-10-regular1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+        .container {
+            margin-top: 30px;
+        }
+        .blog-post {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .blog-post:hover {
+            transform: translateY(-10px); /* Hover effect */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        .blog-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #343a40;
+            font-weight: 600;
+        }
+        p {
+            color: #555;
+            font-size: 0.9rem;
+        }
+        .btn-primary {
+            background: linear-gradient(to right, #ff512f, #dd2476); /* Gradient button */
+            border: none;
+            font-weight: 600;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(to right, #dd2476, #ff512f); /* Hover effect */
+        }
+    </style>
+</head>
+<header>
+    <h1 class="jersey-10-regular1">SANJAY'S BLOG</h1>
+</header>
+<body>
+    <div class="container">
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-md-4 mb-4">
+                <div class="blog-post">
+                    <h2>{{ post.title|upper }}</h2>
+                    <p><strong>Date Posted:</strong> {{ post.date_posted }}</p>
+                    {% if post.image %}
+                        <img src="{{ post.image.url }}" alt="{{ post.title }}" class="blog-image">
+                    {% endif %}
+                    <p>{{ post.content|truncatewords:30 }}</p>
+                    <div class="text-center">
+                        <a href="/blogapp/{{ post.slug }}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+{% include "blogapp/Base.html" %}
+</html>
