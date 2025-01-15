@@ -1,0 +1,22 @@
+nav h1{
+    text-align:center;
+}
+
+nav{
+    background-color: #7CAADC ;
+    height: 50px;
+    border-bottom: 2px solid #F15B42;
+}
+
+thead tr{
+    background-color: #2C3D73;
+}
+
+th{
+    text-align: center;
+}
+td{
+    text-align: center;
+}
+
+

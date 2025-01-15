@@ -38,7 +38,8 @@ schema_view=get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/',include('dailytaskapp.urls')),
-    path('swagger/',schema_view.with_ui('swagger',cache_timeout=5),name='schema-swagger-ui')
+    path('swagger/',schema_view.with_ui('swagger',cache_timeout=5),name='schema-swagger-ui'),
+    path('dailytask/',include('dailytaskapp.urls'))
 
 ]+static(
     settings.MEDIA_URL,
